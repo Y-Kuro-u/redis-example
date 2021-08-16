@@ -1,0 +1,13 @@
+version: '3'
+services:
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6380:6379"
+    container_name: redis-container
+
+  go:
+    build: .
+    tty: true
+    volumes:
+      - ./src:/go/src/work
