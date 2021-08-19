@@ -17,8 +17,8 @@ func Publish(w http.ResponseWriter, r *http.Request ) {
         DB:       0,  // use default DB
     })
 
-	// mychannellの名前を付けたgroupにpayloadという文字列を送信する
-    err := rdb.Publish(ctx, "mychannel1", "payload").Err()
+	// mychannellの名前を付けたgroupにPublishという文字列を送信する
+    err := rdb.Publish(ctx, "mychannel1", "Publish").Err()
     if err != nil {
         panic(err)
     } else {
