@@ -30,6 +30,7 @@ func main() {
 	// http サーバにハンドラの追加
 	http.HandleFunc("/", Publish)
 
-	// http サーバのListen開始
+    // http サーバのListen開始
+    fmt.Println("Starting Publish Server ...")
 	http.ListenAndServe(":8080", nil)
 }

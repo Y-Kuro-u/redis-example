@@ -15,8 +15,11 @@ func subscribe(){
         DB:       0,  // use default DB
     })
 
+	fmt.Println("Start subscribe ...")
+
 	// There is no error because go-redis automatically reconnects on error.
 	pubsub := rdb.Subscribe(ctx, "mychannel1")
+	
 	// Close the subscription when we are done.
 	defer pubsub.Close()
 
