@@ -1,14 +1,15 @@
 package main
 import (
     "context"
-    "fmt"
+	"fmt"
+	"net/http"
 
     "github.com/go-redis/redis/v8"
 )
 
 var ctx = context.Background()
 
-func ExampleClient() {
+func Publish(w http.ResponseWriter, r *http.Request ) {
 	// redisとの接続
     rdb := redis.NewClient(&redis.Options{
         Addr:     "redis-container:6379",
@@ -26,5 +27,9 @@ func ExampleClient() {
 }
 
 func main() {
-    ExampleClient()
+	// http サーバにハンドラの追加
+	http.HandleFunc("/", Publish)
+
+	// http サーバのListen開始
+	http.ListenAndServe(":8080", nil)
 }
