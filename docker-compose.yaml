@@ -6,8 +6,18 @@ services:
       - "6380:6379"
     container_name: redis-container
 
-  go:
+  go-subscribe:
     build: .
     tty: true
     volumes:
       - ./src:/go/src/work
+    entrypoint: "go run /go/src/work/subscribe.go"
+
+  go-publish:
+    build: .
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/go/src/work
+    entrypoint: "go run /go/src/work/publish.go"
